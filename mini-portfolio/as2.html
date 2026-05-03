@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akher Sheikh | Full-Stack Software Developer</title>
+    <!--🔴👇 Remove this tag for SEO -->
+<meta name="robots" content="noindex">
+    <!--🔴👆 Remove this tag for SEO -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-deep: #010204;
+            --accent-glow: #fcc59a; /* Your profile's color sense */
+            --text-main: #ffffff;
+            --text-dim: #a0aec0;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle Starfield Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 25% 35%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 60% 70%, var(--accent-glow), transparent),
+                radial-gradient(1px 1px at 80% 20%, #fff, transparent);
+            background-size: 250px 250px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1050px;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            padding: 50px;
+            gap: 50px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Profile Side */
+        .profile-side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-frame {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1;
+            /* Creative Shape: Sharp Top-Right & Bottom-Left */
+            border-radius: 80px 0px 80px 0px; 
+            overflow: hidden;
+            border: 2px solid var(--accent-glow);
+            box-shadow: 0 0 30px rgba(252, 197, 154, 0.15);
+            transition: 0.5s ease;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Info Side */
+        .info-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hi-text {
+            font-size: 2.8rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 5px;
+        }
+
+        .name-accent {
+            color: var(--accent-glow);
+        }
+
+        .typing-box {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            min-height: 1.6em;
+        }
+
+        .typed-role {
+            color: var(--accent-glow);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .bio {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            max-width: 550px;
+        }
+
+        /* Social Icons */
+        .social-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-btn:hover {
+            background: var(--accent-glow);
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(252, 197, 154, 0.2);
+        }
+
+        .btn-hire {
+            align-self: flex-start;
+            padding: 15px 35px;
+            border-radius: 50px;
+            background: transparent;
+            border: 1.5px solid var(--accent-glow);
+            color: var(--accent-glow);
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn-hire:hover {
+            background: var(--accent-glow);
+            color: #000;
+            box-shadow: 0 10px 25px rgba(252, 197, 154, 0.3);
+        }
+
+        /* --- MOBILE FIXES --- */
+        @media (max-width: 850px) {
+            .main-container {
+                grid-template-columns: 1fr; /* Stack vertically */
+                padding: 40px 25px;
+                gap: 30px;
+                text-align: center;
+                border-radius: 30px;
+            }
+
+            .info-side {
+                align-items: center;
+            }
+
+            .photo-frame {
+                max-width: 240px;
+                border-radius: 60px 0px 60px 0px; /* Scale shape for mobile */
+            }
+
+            .hi-text {
+                font-size: 2.2rem;
+            }
+
+            .typing-box {
+                font-size: 1.03rem;
+            }
+
+            .bio {
+                font-size: 0.95rem;
+            }
+
+            .social-row {
+                justify-content: center;
+            }
+
+            .btn-hire {
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 30px 20px;
+            }
+            .hi-text { font-size: 1.8rem; }
+            .photo-frame { max-width: 200px; }
+        }
+        /* Popup Styles */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* ডার্ক গ্লাস ইফেক্ট */
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: #121212; /* তোমার ব্যাকগ্রাউন্ড কালার */
+    padding: 30px;
+    border: 1px solid #d2a679; /* গোল্ডেন-কপার বর্ডার */
+    border-radius: 20px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #d2a679;
+    cursor: pointer;
+}
+
+.popup-content h3 {
+    color: #d2a679;
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.contact-item:hover {
+    border-color: #d2a679;
+    background: rgba(210, 166, 121, 0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="profile-side">
+            <div class="photo-frame">
+                <img src="1.png" alt="Akher Sheikh">
+            </div>
+        </div>
+
+        <div class="info-side">
+            <h1 class="hi-text">Hi, It's <span class="name-accent">Akher Sheikh</span></h1>
+            
+            <div class="typing-box">
+                I'm a <span id="role-text" class="typed-role"></span><span style="color: var(--accent-glow);">|</span>
+            </div>
+
+            <p class="bio">
+                A web developer specializing in high-performance static websites. I build lightning-fast, SEO-optimized web experiences that look premium on every screen.
+            </p>
+
+            <div class="social-row">
+                <a href="https://www.facebook.com/AkherSheikhOfficial" class="social-btn"><i class="fab fa-facebook"></i></a>
+                <a href="https://github.com/AkherSheikh" class="social-btn"><i class="fab fa-github"></i></a>
+                <a href="https://instagram.com/akher_sh" class="social-btn"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/in/akher-sheikh" class="social-btn"><i class="fab fa-linkedin"></i></a>
+            </div>
+
+            <button onclick="openPopup()" class="btn-hire">Hire Me</button>
+        </div>
+    </div>
+<div id="hireMePopup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h3>Hire Me</h3>
+        <p>Let's build something amazing together!</p>
+        
+        <div class="contact-options">
+            <a href="mailto:https://t.me/AkherConnectBot" class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>Email Me</span>
+            </a>
+            <a href="https://t.me/AkherConnectBot" target="_blank" class="contact-item">
+                <i class="fab fa-telegram-plane"></i>
+                <span>Telegram</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+    <script>
+        const textSpan = document.getElementById('role-text');
+        const roles = [
+            "Web Developer",
+            "Telegram Bot Developer",
+            "Cloudflare Worker Developer",
+            "Digital Artist"
+        ];
+        
+        let roleIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const current = roles[roleIdx];
+            
+            if (isDeleting) {
+                textSpan.textContent = current.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                textSpan.textContent = current.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let speed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIdx === current.length) {
+                isDeleting = true;
+                speed = 2000; // Wait at end
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                roleIdx = (roleIdx + 1) % roles.length;
+                speed = 500;
+            }
+
+            setTimeout(typeEffect, speed);
+        }
+
+        window.onload = typeEffect;
+    </script>
+    <script>
+    function openPopup() {
+    document.getElementById("hireMePopup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("hireMePopup").style.display = "none";
+}
+
+
+window.onclick = function(event) {
+    let popup = document.getElementById("hireMePopup");
+    if (event.target == popup) {
+        closePopup();
+    }
+}
+
+    </script>
+</body>
+</html>
