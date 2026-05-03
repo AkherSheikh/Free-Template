@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cosmic bio link page</title>
+    <!--🔴👇 Remove this tag for SEO -->
+<meta name="robots" content="noindex">
+    <!--🔴👆 Remove this tag for SEO -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --neon: #00f2ff;
+            --neon-border: rgba(0, 242, 255, 0.3);
+            --bg-deep: #010307;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-deep);
+            color: white;
+            font-family: var(--font-code);
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow: hidden;
+            perspective: 1000px; 
+        }
+
+
+        #universe {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at center, #050a1a 0%, #010307 100%);
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+        }
+
+
+        .galaxy {
+            position: absolute;
+            width: 300px; height: 300px;
+            background: url('g.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.5;
+            mix-blend-mode: lighten;
+
+            transform: rotateX(70deg) rotateY(-15deg);
+            animation: galaxyRotate 200s linear infinite;
+            filter: contrast(1.2) saturate(1.5);
+        }
+
+        @keyframes galaxyRotate {
+            from { transform: rotateX(70deg) rotateY(-15deg) rotateZ(0deg); }
+            to { transform: rotateX(70deg) rotateY(-15deg) rotateZ(360deg); }
+        }
+
+
+        .meteor {
+            position: absolute; width: 2px; height: 150px;
+            background: linear-gradient(to top, white, transparent);
+            transform: rotate(225deg); opacity: 0;
+            animation: meteor-fall 10s infinite linear;
+        }
+        @keyframes meteor-fall {
+            0% { transform: translate(500px, -500px) rotate(225deg); opacity: 1; }
+            10% { transform: translate(-500px, 500px) rotate(225deg); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+
+        .floating-console {
+            position: absolute; left: -25px; top: 12%; width: 190px;
+            color: #fff;
+            font-size: 10px; opacity: 0.8;
+            line-height: 1.6; z-index: 10;
+            background: rgba(0, 0, 0, 0.0); padding: 12px;
+            border-left: 2px solid var(--neon);
+            animation: consoleFloat 4s infinite ease-in-out;
+        }
+        @keyframes consoleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+
+        .cockpit-card {
+            width: 74%; max-width: 400px;
+            background: rgba(0, 15, 30, 0.05);
+            border: 1px solid var(--neon-border);
+            padding: 40px 25px;
+            position: relative;
+            backdrop-filter: blur(0px); 
+            clip-path: polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+        }
+
+
+        .pfp-frame {
+            position: relative; width: 110px; height: 110px; margin: 0 auto 25px;
+            background: rgba(0, 242, 255, 0.1);
+            clip-path: polygon(20% 0, 100% 0, 100% 80%, 80% 100%, 0 100%, 0 20%);
+            border: 1px solid var(--neon);
+        }
+        .pfp-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+            clip-path: inherit;
+            animation: weakSignal 4s infinite ease-in-out;
+        }
+        @keyframes weakSignal {
+            0%, 100% { opacity: 1; filter: brightness(1) grayscale(0); transform: scale(1); }
+            5% { opacity: 0.8; filter: brightness(1.3) grayscale(0.2); transform: translate(1px, -1px); }
+            10% { opacity: 0.9; transform: translate(-1px, 0); }
+            15% { opacity: 1; filter: brightness(1); transform: scale(1.02); }
+        }
+
+        .hud-stats {
+            background: rgba(0, 242, 255, 0.05);
+            padding: 12px; margin-bottom: 25px;
+            border-top: 1px solid var(--neon-border);
+            text-align: left;
+        }
+        .timer { font-size: 14px; font-weight: bold; color: #fff; letter-spacing: 1px; }
+        .data-line { font-size: 9px; color: var(--neon); margin-top: 4px; opacity: 0.7; }
+
+        .links { display: flex; flex-direction: column; gap: 12px; }
+        .btn {
+            display: flex; align-items: center; padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--neon-border);
+            text-decoration: none; color: white; font-size: 12px;
+            transition: 0.3s;
+        }
+        .btn:hover { background: rgba(0, 242, 255, 0.15); border-color: var(--neon); transform: scale(1.02); }
+        .btn i { margin-right: 12px; color: var(--neon); width: 18px; text-align: center; }
+
+        .footer { margin-top: 30px; text-align: center; font-size: 8px; opacity: 0.4; letter-spacing: 3px; }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            will-change: transform, opacity;
+            pointer-events: none;
+        }
+
+        @keyframes starPulse {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.9; }
+        }
+
+@keyframes twinkle {
+    0%   { opacity: 0.3; transform: scale(1); }
+    50%  { opacity: 1; transform: scale(1.4); }
+    100% { opacity: 0.3; transform: scale(1); }
+}
+
+
+@keyframes brightPulse {
+    0%   { opacity: 0.8; }
+    50%  { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+    </style>
+</head>
+<body>
+
+    <div id="universe">
+        <div class="galaxy"></div>
+        
+        <div class="meteor" style="left: 75%; animation-delay: 0s;"></div>
+        <div class="meteor" style="left: 25%; animation-delay: 5s;"></div>
+    </div>
+
+    <div class="cockpit-card">
+        <div class="floating-console" id="typewriter"></div>
+
+        <div class="pfp-frame">
+            <img src="a.jpg" alt="Akher Sheikh">
+        </div>
+
+        <h1 style="font-size: 18px; text-align: center; margin: 0; letter-spacing: 3px; color: var(--neon);">AKHER SHEIKH</h1>
+        <p style="font-size: 9px; text-align: center; opacity: 0.5; margin: 5px 0 5px;">VOYAGER_V5.1 // SYSTEM_LIVE</p>
+
+        <div class="hud-stats">
+            <div class="timer" id="clock">00:00:00:000</div>
+            <div class="data-line" id="lyDist">COORD: 0.004210 l/y</div>
+            <div class="data-line">SIGNAL: WEAK_RECONNECTING...</div>
+        </div>
+
+        <div class="links">
+            <a href="https://akher.pages.dev/" class="btn"><i class="fas fa-rocket"></i> WEBSITE</a>
+            <a href="https://github.com/akhersheikh" class="btn"><i class="fab fa-github"></i> GITHUB</a>
+            <a href="https://www.facebook.com/AkherSheikhOfficial" class="btn"><i class="fab fa-facebook-messenger"></i> FACEBOOK</a>
+            <a href="mailto:akherdev@gmail.com" class="btn"><i class="fas fa-satellite-dish"></i>EMAIL</a>
+        </div>
+
+        <div class="footer">© 2026 | Akher Sheikh - social link</div>
+    </div>
+
+<script>
+
+
+(() => {
+    const rand = (min, max) => Math.random() * (max - min) + min;
+
+    function updateClock() {
+        const n = new Date();
+        const clockEl = document.getElementById('clock');
+        if (clockEl) {
+            clockEl.innerText =
+                n.getHours().toString().padStart(2,'0') + ":" +
+                n.getMinutes().toString().padStart(2,'0') + ":" +
+                n.getSeconds().toString().padStart(2,'0') + ":" +
+                n.getMilliseconds().toString().padStart(3,'0');
+        }
+        requestAnimationFrame(updateClock);
+    }
+    updateClock();
+
+    let dist = 0.004210;
+    setInterval(() => {
+        const el = document.getElementById('lyDist');
+        if (el) {
+            dist += 0.000001;
+            el.innerText = `COORD: ${dist.toFixed(6)} l/y`;
+        }
+    }, 120);
+
+    (function typewriterInit(){
+        const logs = [
+            "> INIT GALAXY_SCAN...",
+            "> SYNCING CHANNELS",
+            "> SIGNAL_LOSS: 74%",
+            "> AKHER_OS CONNECTED",
+            "> PATHFINDER ACTIVE",
+            "> RELAYING DATA..."
+        ];
+        let l = 0, c = 0;
+        const term = document.getElementById('typewriter');
+        if (!term) return;
+        function type() {
+            if (l < logs.length) {
+                if (c < logs[l].length) {
+                    term.innerHTML += logs[l][c++];
+                    setTimeout(type, 50);
+                } else {
+                    term.innerHTML += "<br>";
+                    l++; c = 0;
+                    setTimeout(type, 700);
+                }
+            } else {
+                setTimeout(()=>{ term.innerHTML = ""; l = 0; c = 0; type(); }, 3000);
+            }
+        }
+        type();
+    })();
+
+    (function ensureStarKeyframes() {
+        if (document.getElementById('star-animation-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'star-animation-styles';
+        style.textContent = `
+            @keyframes twinkle {
+                0% { opacity: 0.3; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.35); }
+                100% { opacity: 0.3; transform: scale(1); }
+            }
+            @keyframes brightPulse {
+                0% { opacity: 0.75; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.08); }
+                100% { opacity: 0.75; transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    })();
+
+    const uni = document.getElementById('universe');
+    if (!uni) {
+        console.warn('Universe element (#universe) not found — stars skipped.');
+        return;
+    }
+
+    let stars = [];
+    let rafId = null;
+    let lastTime = 0;
+
+    function calcStarCount(w, h) {
+        const area = w * h;
+
+        const base = Math.round(area / 14000);
+        return Math.max(150, Math.min(400, base));
+    }
+
+    function createStars() {
+
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+
+        stars.forEach(s => { try { s.el.remove(); } catch(e){} });
+        stars = [];
+
+        const width = Math.max(200, uni.clientWidth);
+        const height = Math.max(200, uni.clientHeight);
+        let STAR_COUNT = calcStarCount(width, height);
+
+
+        const hw = navigator.hardwareConcurrency || 4;
+        const factor = hw <= 2 ? 0.45 : (hw <= 4 ? 0.8 : 1);
+        STAR_COUNT = Math.round(STAR_COUNT * factor);
+
+        const colors = ['#00f2ff', '#ff00ff', '#ffffff', '#f1c40f', '#e74c3c'];
+
+        for (let i = 0; i < STAR_COUNT; i++) {
+            const el = document.createElement('div');
+            el.className = 'star';
+
+            const r = Math.random();
+            let type = 'slow';
+            if (r < 0.30) type = 'twinkle';
+            else if (r < 0.80) type = 'slow';  
+            else type = 'bright';                 
+            let size, dx = 0, dy = 0;
+            if (type === 'twinkle') {
+                size = rand(0.9, 2.2);
+                el.style.animation = `twinkle ${rand(2.4,5.0)}s ease-in-out ${Math.random()*2}s infinite`;
+            } else if (type === 'slow') {
+                size = rand(0.6, 1.8);
+
+                const speedScale = Math.sqrt(width * height) / 1400; 
+                dx = rand(-0.22, 0.22) * speedScale;
+                dy = rand(-0.22, 0.22) * speedScale;
+
+                if (Math.random() < 0.12) { dx *= 0.18; dy *= 0.18; }
+            } else { 
+                size = rand(2.6, 4.2);
+                el.style.animation = `brightPulse ${rand(3.0,6.0)}s ease-in-out ${Math.random()*2}s infinite`;
+
+            }
+
+            const color = colors[Math.floor(Math.random()*colors.length)];
+            const glow = Math.max(3, Math.round(size * 3.6));
+
+            el.style.width = `${size}px`;
+            el.style.height = `${size}px`;
+            el.style.background = color;
+            el.style.borderRadius = '50%';
+            el.style.position = 'absolute';
+            el.style.left = '0';
+            el.style.top = '0';
+            el.style.boxShadow = `0 0 ${glow}px ${color}`;
+            el.style.opacity = (type === 'bright' ? rand(0.75, 1) : rand(0.45, 1));
+
+
+            let x = rand(0, width);
+            let y = rand(0, height);
+
+            const gx = uni.querySelector('.galaxy');
+            if (gx && Math.random() < 0.6) {
+                try {
+                    const rect = gx.getBoundingClientRect();
+                    const centerX = rect.left + rect.width/2 - uni.getBoundingClientRect().left;
+                    const centerY = rect.top + rect.height/2 - uni.getBoundingClientRect().top;
+                    const minDist = Math.max(rect.width, rect.height) * 0.7;
+                    const dxC = x - centerX, dyC = y - centerY;
+                    if (Math.sqrt(dxC*dxC + dyC*dyC) < minDist) {
+
+                        const ang = Math.atan2(dyC, dxC) || rand(0, Math.PI*2);
+                        x = centerX + Math.cos(ang) * (minDist + rand(20, 180));
+                        y = centerY + Math.sin(ang) * (minDist + rand(20, 180));
+
+                        x = Math.max(4, Math.min(width - 4, x));
+                        y = Math.max(4, Math.min(height - 4, y));
+                    }
+                } catch(e){}
+            }
+
+            uni.appendChild(el);
+
+            stars.push({ el, x, y, dx, dy, size, type, color });
+
+            el.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+
+        lastTime = performance.now();
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(loop);
+    }
+
+
+    function loop(now) {
+        const dt = Math.min(40, now - lastTime);
+        lastTime = now;
+
+        const width = uni.clientWidth;
+        const height = uni.clientHeight;
+
+        for (let i = 0; i < stars.length; i++) {
+            const s = stars[i];
+            if (s.type === 'slow') {
+
+                s.x += s.dx * (dt / 16.6667);
+                s.y += s.dy * (dt / 16.6667);
+
+
+                const margin = Math.max(2, s.size);
+                if (s.x < margin) { s.x = margin; s.dx = Math.abs(s.dx); }
+                if (s.x > width - margin) { s.x = width - margin; s.dx = -Math.abs(s.dx); }
+                if (s.y < margin) { s.y = margin; s.dy = Math.abs(s.dy); }
+                if (s.y > height - margin) { s.y = height - margin; s.dy = -Math.abs(s.dy); }
+
+
+                if (Math.random() < 0.0025) {
+                    s.dx += rand(-0.03, 0.03);
+                    s.dy += rand(-0.03, 0.03);
+                    s.dx = Math.max(-1.3, Math.min(1.3, s.dx));
+                    s.dy = Math.max(-1.3, Math.min(1.3, s.dy));
+                }
+
+                s.el.style.transform = `translate(${s.x}px, ${s.y}px)`;
+            }
+
+        }
+
+        rafId = requestAnimationFrame(loop);
+    }
+
+
+    let resizeTimeout = null;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            createStars();
+        }, 220);
+    });
+
+
+    createStars();
+
+
+    (function shootingStarLoop(){
+        function spawnShootingStar() {
+            const w = uni.clientWidth, h = uni.clientHeight;
+            const startX = rand(w * 0.05, w * 0.95);
+            const startY = rand(h * 0.02, h * 0.35);
+            const angle = rand(22, 45) * (Math.PI/180);
+            const speed = rand(14, 26); 
+            const length = rand(160, 420);
+
+            const el = document.createElement('div');
+            el.className = 'star';
+
+            el.style.width = '3px';
+            el.style.height = `${Math.max(3, length)}px`;
+            el.style.left = '0';
+            el.style.top = '0';
+            el.style.position = 'absolute';
+            el.style.background = 'linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,0))';
+            el.style.opacity = '0.95';
+            el.style.boxShadow = '0 0 16px rgba(255,255,255,0.9)';
+            el.style.transformOrigin = 'top left';
+            el.style.pointerEvents = 'none';
+            uni.appendChild(el);
+
+            let px = startX, py = startY;
+            const vx = Math.cos(angle) * speed;
+            const vy = Math.sin(angle) * speed;
+            let life = 0;
+            const maxLife = Math.round(length / (speed * 0.5)) + 6;
+            
+            function stepS() {
+                px += vx;
+                py += vy;
+                life++;
+
+                el.style.transform = `translate(${px}px, ${py}px) rotate(${angle}rad)`;
+
+                if (life > maxLife * 0.6) {
+                    const rem = (life - maxLife * 0.6) / (maxLife * 0.4);
+                    el.style.opacity = `${Math.max(0, 0.95 * (1 - rem))}`;
+                }
+                if (life > maxLife || px > w + 200 || py > h + 200) {
+                    el.remove();
+                    return;
+                }
+                requestAnimationFrame(stepS);
+            }
+            requestAnimationFrame(stepS);
+        }
+
+
+        setInterval(() => {
+            if (Math.random() < 0.09) { 
+                spawnShootingStar();
+            }
+        }, 2300);
+    })();
+
+
+    window.__GALAXY = {
+        recreate: createStars,
+        getStarCount: () => stars.length,
+        stop: () => { if (rafId) cancelAnimationFrame(rafId); rafId = null; }
+    };
+
+})();
+</script>
+</body>
+</html>
