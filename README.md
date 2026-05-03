@@ -1,28 +1,31 @@
 # 📂 Free HTML Templates Collection
 
-A curated collection of modern, responsive, and lightweight HTML templates designed for speed and simplicity. Perfect for personal projects, portfolios, or learning purposes.
+A curated collection of modern, responsive, and lightweight HTML templates. These templates are designed for developers, students, and hobbyists who need a quick start for their web projects.
 
-![License](https://img.shields.io/badge/License-NC%20(Non--Commercial)-red)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
 ## 🚀 Features
-- **Fully Responsive:** Optimized for mobile, tablet, and desktop screens.
-- **Minimalist Design:** Clean and professional aesthetic.
-- **Developer Friendly:** Well-commented and easy-to-edit code.
-- **Fast Performance:** No unnecessary bloat, ensuring quick load times.
+- **Fully Responsive:** Mobile-first design that works perfectly on all screen sizes.
+- **Minimalist Aesthetic:** Clean, modern, and professional look.
+- **SEO Optimized:** Light code structure for better search engine ranking.
+- **Easy Customization:** Well-organized HTML and CSS files for quick editing.
 
 ## 🛠️ How to Use
-1. **Clone or Download:** Clone this repository or download the ZIP file.
-2. **Open:** Open the folder in your favorite code editor (e.g., VS Code).
-3. **Customize:** Edit the HTML/CSS files to match your requirements.
-4. **Deploy:** Upload your files to any hosting provider (GitHub Pages, Vercel, Netlify, etc.).
+1. **Clone or Download:** Get the source code by cloning the repository or downloading the ZIP file.
+2. **Explore:** Browse through the folders to find the template that fits your needs.
+3. **Customize:** Open the files in your preferred code editor (e.g., VS Code) and make your changes.
+4. **Deploy:** These are static files, so you can host them easily on GitHub Pages, Netlify, Vercel, or any other hosting.
 
 ## 📄 License
-**All templates are NC licensed.**
+This project is licensed under the **MIT License**. 
 
-- **Personal Use:** You are free to use, modify, and redistribute these templates for personal or educational projects.
-- **Commercial Restriction:** You **cannot** sell these templates, include them in paid products, or use them for direct commercial gain.
-- **Attribution:** Providing credit is **optional**. While not required, a link back to this repository is always appreciated if you find these templates helpful.
+You are free to:
+- Use these templates for **personal and commercial** projects.
+- Modify and build upon the code.
+- Redistribute the templates.
+
+*Note: You must include the original copyright notice in any copy or substantial portion of the software.*
 
 ---
-Created by **Akher Sheikh**
+Created and Maintained by **Akher Sheikh**
