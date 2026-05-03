@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ✏️ Update per template -->
+<title>Mini Portfolio — Akher Sheikh Free Templates</title>
+<meta name="description" content="Free card-style mini portfolio template. Dark theme, typed role animation, social links. MIT license.">
+<link rel="canonical" href="https://akhersheikh.github.io/free-template/mini-portfolio/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0a0a0a;
+    --bg1:      #111114;
+    --surface:  #17171b;
+    --surface2: #1d1d22;
+    --border:   #26262d;
+    --border2:  #2e2e38;
+    --text:     #c9c9d4;
+    --muted:    #5a5a6e;
+    --ink:      #eeeef4;
+    --accent:   #7c6af7;
+    --accent2:  #a78bfa;
+    --green:    #4ade80;
+    --mono:     'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, #26262d 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky;
+    top: 0; z-index: 50;
+    background: rgba(10,10,10,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .nav-brand-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .nav-brand-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.18s;
+  }
+
+  .nav-back:hover { color: var(--ink); }
+
+  /* ── Page layout ── */
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2.4rem 2rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 2.4rem;
+    align-items: start;
+  }
+
+  /* ── Left: Preview + Details ── */
+  .main-col { min-width: 0; }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: up 0.5s 0.1s ease forwards;
+  }
+
+  .breadcrumb a, .breadcrumb span {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.18s;
+  }
+
+  .breadcrumb a:hover { color: var(--ink); }
+  .breadcrumb i { font-size: 0.6rem; color: var(--border2); }
+
+  /* Title block */
+  .title-block {
+    margin-bottom: 1.6rem;
+    opacity: 0;
+    animation: up 0.5s 0.18s ease forwards;
+  }
+
+  .title-top {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tcat {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    background: rgba(124,106,247,0.1);
+    border: 1px solid rgba(124,106,247,0.2);
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+  }
+
+  .tbadge-free {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.2);
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+  }
+
+  h1.tname {
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+
+  .tdesc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 540px;
+  }
+
+  /* ── Preview window ── */
+  .preview-window {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: up 0.5s 0.26s ease forwards;
+  }
+
+  /* Browser chrome bar */
+  .browser-bar {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 0.55rem 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+  }
+
+  .dot-r { background: #3a1f1f; }
+  .dot-y { background: #3a3020; }
+  .dot-g { background: #1f3a25; }
+
+  .browser-url {
+    flex: 1;
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.22rem 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Preview iframe or image area */
+  .preview-body {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--bg1);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .preview-body img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Placeholder mockup */
+  .preview-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    color: var(--border2);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+
+  .preview-placeholder i { font-size: 2rem; }
+
+  /* Live preview toggle */
+  .preview-tabs {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: up 0.5s 0.32s ease forwards;
+  }
+
+  .ptab {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 0.32rem 0.85rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .ptab:hover { color: var(--ink); border-color: var(--border2); }
+  .ptab.active {
+    background: rgba(124,106,247,0.1);
+    border-color: rgba(124,106,247,0.28);
+    color: var(--accent2);
+  }
+
+  /* ── Description sections ── */
+  .section-block {
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: up 0.5s ease forwards;
+  }
+
+  .section-block:nth-child(1) { animation-delay: 0.38s; }
+  .section-block:nth-child(2) { animation-delay: 0.44s; }
+  .section-block:nth-child(3) { animation-delay: 0.50s; }
+
+  .slabel {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sbody {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .sbody p + p { margin-top: 0.8rem; }
+
+  /* Feature list */
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.83rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .feature-list li i {
+    color: var(--green);
+    font-size: 0.7rem;
+    margin-top: 0.22rem;
+    flex-shrink: 0;
+  }
+
+  /* Code snippet block */
+  .code-block {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+    margin-top: 0.8rem;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .code-lang {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .code-copy {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: color 0.18s;
+    padding: 0;
+  }
+
+  .code-copy:hover { color: var(--accent2); }
+
+  .code-body {
+    padding: 0.9rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text);
+    line-height: 1.75;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    position: sticky;
+    top: 76px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    animation: up 0.5s 0.4s ease forwards;
+  }
+
+  .scard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 1.2rem 1.3rem;
+  }
+
+  .scard-label {
+    font-family: var(--mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* CTA buttons */
+  .btn-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: 1px solid;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .btn-solid {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .btn-solid:hover {
+    background: var(--accent2);
+    border-color: var(--accent2);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--border);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--border2);
+    color: var(--ink);
+  }
+
+  /* Meta rows */
+  .meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .mkey {
+    font-size: 0.75rem;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .mval {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink);
+    text-align: right;
+  }
+
+  .mval.green { color: var(--green); }
+
+  /* Stack tags */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .stag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.04em;
+    transition: all 0.18s;
+  }
+
+  .stag:hover { border-color: var(--border2); color: var(--ink); }
+
+  /* ── Related ── */
+  .related-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2.4rem;
+  }
+
+  .related-head {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    font-family: var(--mono);
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
+  }
+
+  .rel-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .rel-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+  }
+
+  .rel-cat {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .rel-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .rel-arrow {
+    font-size: 0.7rem;
+    color: var(--accent2);
+    margin-top: auto;
+    transition: gap 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  /* ── Footer ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .footer-left {
+    font-size: 0.78rem;
+    color: var(--muted);
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  .footer-left a {
+    color: var(--accent2);
+    text-decoration: none;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .fsocial {
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.18s;
+  }
+
+  .fsocial:hover { color: var(--ink); }
+
+  /* ── Animations ── */
+  @keyframes up {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 760px) {
+    .page-wrap {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem 1.4rem 4rem;
+    }
+    .sidebar { position: static; }
+    .related-grid { grid-template-columns: 1fr; }
+    .related-wrap { padding-left: 1.4rem; padding-right: 1.4rem; }
+    nav { padding: 0 1.4rem; }
+    footer { padding: 1.2rem 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <a href="." class="nav-brand">
+    <div class="nav-brand-dot"></div>
+    <span class="nav-brand-name">free-template</span>
+  </a>
+  <div class="nav-right">
+    <a href="." class="nav-back">
+      <i class="fa-solid fa-arrow-left fa-xs"></i> All templates
+    </a>
+  </div>
+</nav>
+
+<!-- ── Main Layout ── -->
+<div class="page-wrap">
+
+  <!-- Left column -->
+  <div class="main-col">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href=".">Templates</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <!-- ✏️ Update category and name -->
+      <a href=".">Portfolio</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Minimal Portfolio</span>
+    </div>
+
+    <!-- Title -->
+    <div class="title-block">
+      <div class="title-top">
+        <!-- ✏️ Update category -->
+        <span class="tcat">Portfolio</span>
+        <span class="tbadge-free">Free</span>
+      </div>
+      <!-- ✏️ Update name -->
+      <h1 class="tname">Mini Portfolio</h1>
+      <!-- ✏️ Update description -->
+      <p class="tdesc">A compact dark card with profile image, animated typed role, bio, social icons, and a hire button. No dependencies.</p>
+    </div>
+
+    <!-- Preview window -->
+    <div class="preview-window">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+        </div>
+        <!-- ✏️ Update live URL -->
+        <div class="browser-url">akhersheikh.github.io/free-template/preview/minimal-portfolio/</div>
+      </div>
+      <div class="preview-body">
+        
+          
+          <img src="web-preview.jpg" alt="Minimal Portfolio Preview">
+
+          
+        
+      </div>
+    </div>
+
+    <!-- Preview toggle tabs -->
+    <div class="preview-tabs">
+      <button class="ptab active">
+        <i class="fa-solid fa-eye fa-xs"></i> Preview
+      </button>
+      <button class="ptab">
+        <i class="fa-brands fa-github fa-xs"></i> Source
+      </button>
+    </div>
+
+    <!-- Features -->
+    <div class="section-block">
+      <div class="slabel">What's included</div>
+      <ul class="feature-list">
+        <li><i class="fa-solid fa-check"></i> Card layout — standalone page or embeddable component</li>
+        <li><i class="fa-solid fa-check"></i> Typewriter animation for role — pure JS, no library</li>
+        <li><i class="fa-solid fa-check"></i> Profile image with warm border accent</li>
+        <li><i class="fa-solid fa-check"></i> Social icon buttons — easily extended</li>
+        <li><i class="fa-solid fa-check"></i> Responsive — stacks on mobile</li>
+        <li><i class="fa-solid fa-check"></i> Popup contact link</li>
+        <li><i class="fa-solid fa-check"></i> Zero dependencies — plain HTML, CSS &amp; JS only</li>
+      </ul>
+    </div>
+
+    <!-- How to use -->
+    <div class="section-block">
+      <div class="slabel">How to use</div>
+      <div class="sbody">
+        <p>Download the ZIP or clone the repository. Open <code style="font-family:var(--mono);font-size:0.8em;background:var(--surface2);padding:0.1rem 0.3rem;border-radius:3px;">mini-portfolio.html</code> in your browser and start editing. No build step, no npm install.</p>
+        <p>All editable sections are marked with a <code style="font-family:var(--mono);font-size:0.8em;background:var(--surface2);padding:0.1rem 0.3rem;border-radius:3px;">✏️</code> comment inside the file.</p>
+      </div>
+
+      <!-- Quick start command -->
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">bash</span>
+          <button class="code-copy" id="copyBtn">
+            <i class="fa-regular fa-copy"></i> copy
+          </button>
+        </div>
+        <!-- ✏️ Update repo URL and folder name -->
+        <div class="code-body" id="codeSnippet">git clone https://github.com/AkherSheikh/free-template.git
+cd free-template/mini-portfolio
+open mini-portfolio.html</div>
+      </div>
+    </div>
+
+    <!-- License note -->
+    <div class="section-block">
+      <div class="slabel">License</div>
+      <div class="sbody">
+        <p>This template is released under the <strong style="color:var(--ink);font-weight:500;">MIT License</strong>. Use it for personal or commercial projects, modify it freely. No credit needed — though it's always appreciated.</p>
+      </div>
+    </div>
+
+  </div><!-- /main-col -->
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+
+    <!-- Download / Live -->
+    <div class="scard">
+      <div class="scard-label">Get this template</div>
+      <div class="btn-row">
+        <!-- ✏️ Update href -->
+        <a href="https://github.com/AkherSheikh/Free-Template/blob/main/mini-portfolio/" class="btn btn-solid" download>
+          <i class="fa-solid fa-download fa-xs"></i> Download ZIP
+        </a>
+        <a href="https://github.com/AkherSheikh/Free-Template/blob/main/mini-portfolio/mini-portfolio.html" class="btn btn-outline" target="_blank" rel="noopener">
+          <i class="fa-brands fa-github fa-xs"></i> View on GitHub
+        </a>
+        <a href="https://akhersheikh.github.io/Free-Template/mini-portfolio/mini-portfolio.html" class="btn btn-outline" target="_blank" rel="noopener">
+          <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i> Live preview
+        </a>
+      </div>
+    </div>
+
+    <!-- Meta -->
+    <div class="scard">
+      <div class="scard-label">Details</div>
+      <div class="meta-list">
+        <div class="meta-row">
+          <span class="mkey">Category</span>
+          <!-- ✏️ -->
+          <span class="mval">Portfolio</span>
+        </div>
+        <div class="meta-row">
+          <span class="mkey">Version</span>
+          <!-- ✏️ -->
+          <span class="mval">v1.0</span>
+        </div>
+        <div class="meta-row">
+          <span class="mkey">Updated</span>
+          <!-- ✏️ -->
+          <span class="mval">May 2025</span>
+        </div>
+        <div class="meta-row">
+          <span class="mkey">License</span>
+          <span class="mval green">MIT</span>
+        </div>
+        <div class="meta-row">
+          <span class="mkey">Price</span>
+          <span class="mval green">Free</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stack -->
+    <div class="scard">
+      <div class="scard-label">Built with</div>
+      <div class="tag-row">
+        <!-- ✏️ Update tags -->
+        <span class="stag">HTML5</span>
+        <span class="stag">CSS3</span>
+        <span class="stag">Vanilla JS</span>
+        <span class="stag">Font Awesome</span>
+        <span class="stag">Google Fonts</span>
+      </div>
+    </div>
+
+    <!-- Author -->
+    <div class="scard">
+      <div class="scard-label">Made by</div>
+      <div style="display:flex;align-items:center;gap:0.7rem;">
+        <div style="width:32px;height:32px;border-radius:50%;background:rgba(124,106,247,0.15);border:1px solid rgba(124,106,247,0.25);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--accent2);font-weight:600;flex-shrink:0;">AS</div>
+        <div>
+          <div style="font-size:0.82rem;font-weight:500;color:var(--ink);">Akher Sheikh</div>
+          <a href="https://akher.pages.dev" target="_blank" style="font-size:0.72rem;color:var(--muted);text-decoration:none;transition:color 0.18s;" onmouseover="this.style.color='var(--accent2)'" onmouseout="this.style.color='var(--muted)'">akher.pages.dev</a>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-left">
+    Made by <a href="https://akher.pages.dev" target="_blank">Akher Sheikh</a>
+    &nbsp;·&nbsp; MIT Licensed
+  </div>
+  <div class="footer-right">
+    <a href="https://github.com/AkherSheikh" class="fsocial" target="_blank"><i class="fa-brands fa-github"></i></a>
+    <a href="https://t.me/AkherConnectBot" class="fsocial" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+    <a href="https://x.com/AkherSheikh_" class="fsocial" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+  </div>
+</footer>
+
+<script>
+  // Copy code button
+  const copyBtn = document.getElementById('copyBtn');
+  const snippet = document.getElementById('codeSnippet');
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(snippet.textContent.trim()).then(() => {
+      copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> copied';
+      copyBtn.style.color = 'var(--green)';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> copy';
+        copyBtn.style.color = '';
+      }, 2000);
+    });
+  });
+
+  // Preview / Source tab switch (placeholder)
+  const ptabs = document.querySelectorAll('.ptab');
+  ptabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      ptabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
