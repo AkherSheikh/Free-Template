@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Templates — Akher Sheikh</title>
+<meta name="description" content="Free HTML templates by Akher Sheikh. Clean, minimal, ready to use. No strings attached.">
+<link rel="canonical" href="https://akhersheikh.github.io/free-template/">
+<meta property="og:title" content="Free Templates — Akher Sheikh">
+<meta property="og:description" content="Free HTML templates by Akher Sheikh. Clean, minimal, ready to use.">
+<meta property="og:url" content="https://akhersheikh.github.io/free-template/">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0a0a0a;
+    --bg1:      #111114;
+    --surface:  #17171b;
+    --surface2: #1d1d22;
+    --border:   #26262d;
+    --border2:  #2e2e38;
+    --text:     #c9c9d4;
+    --muted:    #5a5a6e;
+    --ink:      #eeeef4;
+    --accent:   #7c6af7;
+    --accent2:  #a78bfa;
+    --green:    #4ade80;
+    --mono:     'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* subtle dot grid bg */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, #26262d 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,10,10,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .nav-brand-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .nav-brand-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.18s;
+  }
+
+  .nav-link:hover { color: var(--ink); }
+
+  .nav-badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    background: rgba(124,106,247,0.12);
+    color: var(--accent2);
+    border: 1px solid rgba(124,106,247,0.22);
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .hero-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent2);
+    background: rgba(124,106,247,0.08);
+    border: 1px solid rgba(124,106,247,0.18);
+    border-radius: 20px;
+    padding: 0.28rem 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    opacity: 0;
+    animation: up 0.6s 0.1s ease forwards;
+  }
+
+  .hero-chip i { font-size: 0.65rem; }
+
+  h1.hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: up 0.6s 0.2s ease forwards;
+  }
+
+  h1.hero-title span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 440px;
+    margin: 0 auto 2.4rem;
+    line-height: 1.75;
+    opacity: 0;
+    animation: up 0.6s 0.3s ease forwards;
+  }
+
+  .hero-stats {
+    display: inline-flex;
+    gap: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    background: var(--surface);
+    opacity: 0;
+    animation: up 0.6s 0.4s ease forwards;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+  }
+
+  /* ── Filter bar ── */
+  .filter-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    padding: 0 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-tab {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+
+  .filter-tab:hover { border-color: var(--border2); color: var(--ink); }
+
+  .filter-tab.active {
+    background: rgba(124,106,247,0.12);
+    border-color: rgba(124,106,247,0.3);
+    color: var(--accent2);
+  }
+
+  .filter-count {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  /* ── Grid ── */
+  .grid-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  /* ── Card ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: up 0.5s ease forwards;
+  }
+
+  .card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  /* Preview area */
+  .card-preview {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: var(--bg1);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .card:hover .card-preview img { transform: scale(1.04); }
+
+  /* Placeholder preview with mini "screenshot" feel */
+  .preview-mock {
+    width: 100%;
+    height: 100%;
+    background: var(--bg1);
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .mock-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border2);
+  }
+
+  .mock-bar.w-60  { width: 60%; }
+  .mock-bar.w-40  { width: 40%; }
+  .mock-bar.w-80  { width: 80%; }
+  .mock-bar.w-30  { width: 30%; }
+  .mock-bar.accent { background: rgba(124,106,247,0.25); }
+
+  .mock-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .mock-box {
+    height: 36px;
+    border-radius: 4px;
+    background: var(--border);
+  }
+
+  /* Badge over preview */
+  .card-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+
+  .badge-free {
+    background: rgba(74,222,128,0.1);
+    color: var(--green);
+    border-color: rgba(74,222,128,0.25);
+  }
+
+  .badge-new {
+    background: rgba(124,106,247,0.12);
+    color: var(--accent2);
+    border-color: rgba(124,106,247,0.25);
+  }
+
+  /* Card body */
+  .card-body {
+    padding: 1rem 1.1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-category {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .card-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.4rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .ctag {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.1rem 0.45rem;
+    letter-spacing: 0.04em;
+  }
+
+  .card-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent2);
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+    transition: gap 0.18s;
+  }
+
+  .card:hover .card-btn { gap: 0.55rem; }
+
+  /* Animation delays for cards */
+  .card:nth-child(1) { animation-delay: 0.45s; }
+  .card:nth-child(2) { animation-delay: 0.52s; }
+  .card:nth-child(3) { animation-delay: 0.59s; }
+  .card:nth-child(4) { animation-delay: 0.66s; }
+  .card:nth-child(5) { animation-delay: 0.73s; }
+  .card:nth-child(6) { animation-delay: 0.80s; }
+
+  /* ── Footer ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .footer-left a {
+    color: var(--accent2);
+    text-decoration: none;
+    transition: color 0.18s;
+  }
+
+  .footer-left a:hover { color: var(--ink); }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-social {
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.18s;
+  }
+
+  .footer-social:hover { color: var(--ink); }
+
+  /* ── Animations ── */
+  @keyframes up {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 540px) {
+    .hero { padding: 3.5rem 1.4rem 3rem; }
+    .hero-stats { gap: 1.2rem; padding: 0.7rem 1.2rem; }
+    .filter-wrap, .grid-wrap { padding-left: 1.4rem; padding-right: 1.4rem; }
+    .grid-wrap { grid-template-columns: 1fr; }
+    footer { padding: 1.2rem 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <a href="." class="nav-brand">
+    <div class="nav-brand-dot"></div>
+    <span class="nav-brand-name">free-template</span>
+  </a>
+  <div class="nav-right">
+    <a href="https://akher.pages.dev" class="nav-link" target="_blank">Portfolio</a>
+    <a href="https://github.com/AkherSheikh" class="nav-link" target="_blank">GitHub</a>
+    <span class="nav-badge">MIT License</span>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="hero-chip">
+    <i class="fa-solid fa-circle-dot"></i> free &amp; open source
+  </div>
+  <h1 class="hero-title">Templates made to<br><span>use, not admire</span></h1>
+  <p class="hero-sub">
+    Clean, minimal HTML templates. Copy what you need,
+    change what you want. No attribution required.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <!-- ✏️ update numbers -->
+      <span class="stat-num">02</span>
+      <span class="stat-label">Templates</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">MIT</span>
+      <span class="stat-label">License</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">free</span>
+      <span class="stat-label">Always</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Filter bar ── -->
+<div class="filter-wrap">
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-filter="all">All</button>
+    <button class="filter-tab" data-filter="landing">Landing</button>
+    <button class="filter-tab" data-filter="portfolio">Portfolio</button>
+    <button class="filter-tab" data-filter="utility">Utility</button>
+  </div>
+  <span class="filter-count" id="filterCount">2 templates</span>
+</div>
+
+<!-- ── Template Grid ── -->
+<div class="grid-wrap" id="grid">
+
+  <!-- Card 1 -->
+  <a href="mini-portfolio" class="card" data-category="portfolio">
+    <div class="card-preview">
+<img src="mini-portfolio/web-preview.jpg" alt="mini-portfolio"> 
+      
+      <span class="card-badge badge-new">New</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Portfolio</span>
+      </div>
+      <div class="card-title">Minimal Portfolio</div>
+      <p class="card-desc">A compact dark card with profile image, animated typed role, bio, social icons, and a hire button. No dependencies.</p>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ctag">HTML</span>
+          <span class="ctag">CSS</span>
+        </div>
+        <span class="card-btn">View <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 2 --
+  <a href="template.html" class="card" data-category="landing">
+    <div class="card-preview">
+      <div class="preview-mock">
+        <div class="mock-bar w-60 accent"></div>
+        <div class="mock-bar w-40"></div>
+        <div style="height:10px"></div>
+        <div class="mock-bar w-80"></div>
+        <div class="mock-bar w-60"></div>
+        <div style="height:6px"></div>
+        <div class="mock-bar w-30 accent"></div>
+      </div>
+      <span class="card-badge badge-free">Free</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Landing</span>
+      </div>
+      <div class="card-title">SaaS Landing Page</div>
+      <p class="card-desc">Simple product landing with hero, features grid, and CTA — no framework.</p>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ctag">HTML</span>
+          <span class="ctag">CSS</span>
+          <span class="ctag">JS</span>
+        </div>
+        <span class="card-btn">View <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+      </div>
+    </div>
+  </a>
+-->
+  <!-- Card 3 -->
+  <a href="cosmic-bio-link" class="card" data-category="utility">
+    <div class="card-preview">
+      <img src="cosmic-bio-link/ss.jpg" alt="mini-portfolio">
+      <span class="card-badge badge-free">Free</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Utility</span>
+      </div>
+      <div class="card-title">Cosmic Link in Bio Page</div>
+      <p class="card-desc">A Cosmic, fast bio link page — Telegram, GitHub, socials, all in one clean card.</p>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ctag">HTML</span>
+          <span class="ctag">CSS</span>
+        </div>
+        <span class="card-btn">View <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 4 --
+  <a href="template.html" class="card" data-category="landing">
+    <div class="card-preview">
+      <div class="preview-mock">
+        <div class="mock-bar w-40 accent"></div>
+        <div class="mock-bar w-60"></div>
+        <div style="height:8px"></div>
+        <div class="mock-grid">
+          <div class="mock-box"></div>
+          <div class="mock-box"></div>
+        </div>
+        <div style="height:4px"></div>
+        <div class="mock-bar w-80"></div>
+      </div>
+      <span class="card-badge badge-free">Free</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Landing</span>
+      </div>
+      <div class="card-title">Telegram Bot Landing</div>
+      <p class="card-desc">Landing page template made for showcasing a Telegram bot — features, usage, link.</p>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ctag">HTML</span>
+          <span class="ctag">CSS</span>
+        </div>
+        <span class="card-btn">View <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+      </div>
+    </div>
+  </a>
+-->
+  <!-- Card 5 --
+  <a href="template.html" class="card" data-category="portfolio">
+    <div class="card-preview">
+      <div class="preview-mock">
+        <div class="mock-bar w-30 accent"></div>
+        <div class="mock-bar w-80"></div>
+        <div style="height:6px"></div>
+        <div class="mock-bar w-60"></div>
+        <div class="mock-bar w-40"></div>
+        <div style="height:8px"></div>
+        <div class="mock-bar w-50 accent" style="width:50%"></div>
+      </div>
+      <span class="card-badge badge-free">Free</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Portfolio</span>
+      </div>
+      <div class="card-title">Dev Card</div>
+      <p class="card-desc">A one-page developer card — name, stack, links. Small, sharp, deployable in minutes.</p>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ctag">HTML</span>
+          <span class="ctag">CSS</span>
+        </div>
+        <span class="card-btn">View <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+      </div>
+    </div>
+  </a>
+-->
+  <!-- Card 6 --
+  <a href="template.html" class="card" data-category="utility">
+    <div class="card-preview">
+      <div class="preview-mock">
+        <div class="mock-bar w-60 accent"></div>
+        <div style="height:10px"></div>
+        <div class="mock-bar w-80"></div>
+        <div class="mock-bar w-40"></div>
+        <div style="height:6px"></div>
+        <div class="mock-bar w-60"></div>
+        <div class="mock-bar w-30 accent"></div>
+      </div>
+      <span class="card-badge badge-free">Free</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Utility</span>
+      </div>
+      <div class="card-title">404 Error Page</div>
+      <p class="card-desc">A clean, styled 404 page — dark theme, minimal copy, back-to-home button.</p>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ctag">HTML</span>
+          <span class="ctag">CSS</span>
+        </div>
+        <span class="card-btn">View <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+      </div>
+    </div>
+  </a>
+-->
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-left">
+    Made by <a href="https://akher.pages.dev" target="_blank">Akher Sheikh</a>
+    &nbsp;·&nbsp; All templates are MIT licensed
+  </div>
+  <div class="footer-right">
+    <a href="https://github.com/AkherSheikh" class="footer-social" target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="https://t.me/AkherConnectBot" class="footer-social" target="_blank">
+      <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a href="https://x.com/AkherSheikh_" class="footer-social" target="_blank">
+      <i class="fa-brands fa-x-twitter"></i>
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Filter tabs
+  const tabs  = document.querySelectorAll('.filter-tab');
+  const cards = document.querySelectorAll('.card');
+  const count = document.getElementById('filterCount');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filter = tab.dataset.filter;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      count.textContent = visible + (visible === 1 ? ' template' : ' templates');
+    });
+  });
+</script>
+</body>
+</html>
